@@ -11,14 +11,27 @@ public class U1 extends Rocket {
 
     @Override
     public boolean launch() {
-        return doRiskyThing(TAKEOFF_RISK);
+        double chanceOfExplosion = TAKEOFF_RISK * load();
+        double luck = Math.random();
+
+        return luck > chanceOfExplosion;
     }
 
     @Override
     public boolean land() {
-        return doRiskyThing(LANDING_RISK);
+        double chanceOfExplosion = LANDING_RISK * load();
+        double luck = Math.random();
+
+        return luck > chanceOfExplosion;
     }
-}
+
+    private double load() { // Calculates how much the rocket can carry in kg.
+        return (MAX_WEIGHT - ROCKET_WEIGHT) / (double)MAX_WEIGHT;
+        // return rocketPayLoad /(double)maxWeight; // fixme - should depend only on cargo not on rocket weight
+    }
+
+    }
+
 
     /*Rocket cost = $100 Million
         Rocket weight = 10 Tonnes
