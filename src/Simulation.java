@@ -4,17 +4,31 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Simulation {
-    File toolsList = new File("tools.txt");
 
-    Scanner fileScanner = new Scanner(toolsList);
+    public ArrayList<Item> loadItems(String pathname) throws FileNotFoundException {
 
-    ArrayList phase1Tools = new ArrayList(); // Array containing the tools file.
+        final File itemsListFile = new File(pathname);
+        final Scanner fileScanner = new Scanner(itemsListFile);
 
-    while (fileScanner.hasNextLine()) { // Loop for reading the tools file.
-        phase1Tools.add(fileScanner.nextLine());
+        final ArrayList<Item> items = new ArrayList<>();
+
+        while (fileScanner.hasNextLine()) { // Loop for reading the tools file.
+            final String line = fileScanner.nextLine();
+
+            final String[] splitLine = line.split("=");
+            final String itemName = splitLine[0];
+            final int itemWeight = Integer.parseInt(splitLine[1]);
+
+            final Item item = new Item(itemName, itemWeight);
+            items.add(item);
+        }
+        return items;
     }
 
+    public ArrayList<U1> loadU1(ArrayList<Item> itemsToLoad){
+        U1 rakieta = new U1();
+        rakieta.canCarry()
 
-    public Simulation() throws FileNotFoundException {
     }
+
 }

@@ -1,12 +1,15 @@
 public abstract class Rocket implements SpaceShip{
 
     protected final int maxWeight;
-    protected int rocketPayLoad;
-    protected boolean NewRocketNeeded = false;
+    protected final int rocketWeight;
+    protected final int cargoLimit;
+    protected int cargoCarried;
 
     protected Rocket(int maxWeight, int rocketWeight) {
         this.maxWeight = maxWeight;
-        rocketPayLoad = rocketWeight;
+        this.rocketWeight = rocketWeight;
+        this.cargoLimit = maxWeight - rocketWeight;
+        cargoCarried = 0;
     }
 
     @Override
@@ -18,26 +21,29 @@ public abstract class Rocket implements SpaceShip{
     public boolean land() {
         return true;
     }
+
     @Override
-    public boolean canCarry(Item item) {
-        return rocketPayLoad + item.weight <= maxWeight;
+    public boolean canCarry(Item item) { // Checks if an item can be loaded into the rocket.
+        return cargoCarried + item.getWeight() <= cargoLimit;
     }
 
     @Override
-    public void carry(Item item) { // Checks if another item can be loaded and calculates the rocket's weight.
+    public void carry(Item item) { // Updates the rocket's payload.
         if (canCarry(item)) {
-            rocketPayLoad = rocketPayLoad + item.weight; // todo - check if an item can be carried
+            cargoCarried = cargoCarried + item.getWeight();
         } else {
-            NewRocketNeeded = true;
+            throw new IllegalArgumentException();
         }
     }
 
-//    protected boolean doRiskyThing(double risk) {
-//        double chanceOfExplosion = risk * load();
-//        double luck = Math.random();
-//
-//        return luck > chanceOfExplosion;
+    private double checkLoad() { //Checks the current load of the rocket.
+        return cargoCarried / (double)cargoLimit;
     }
 
+    protected boolean doRiskyThing(final double risk) {
+        final double chanceOfExplosion = risk * checkLoad();
+        final double luck = Math.random();
+        return luck > chanceOfExplosion;
+    }
 
 }

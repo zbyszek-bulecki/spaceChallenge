@@ -9,28 +9,18 @@ public class U1 extends Rocket {
         super(MAX_WEIGHT, ROCKET_WEIGHT);
     }
 
+
     @Override
     public boolean launch() {
-        double chanceOfExplosion = TAKEOFF_RISK * load();
-        double luck = Math.random();
-
-        return luck > chanceOfExplosion;
+        return doRiskyThing(TAKEOFF_RISK);
     }
 
     @Override
     public boolean land() {
-        double chanceOfExplosion = LANDING_RISK * load();
-        double luck = Math.random();
-
-        return luck > chanceOfExplosion;
+        return doRiskyThing(LANDING_RISK);
     }
 
-    private double load() { // Calculates how much the rocket can carry in kg.
-        return (MAX_WEIGHT - ROCKET_WEIGHT) / (double)MAX_WEIGHT;
-        // return rocketPayLoad /(double)maxWeight; // fixme - should depend only on cargo not on rocket weight
-    }
-
-    }
+}
 
 
     /*Rocket cost = $100 Million
