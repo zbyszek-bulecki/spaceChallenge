@@ -2,8 +2,10 @@ public class U1 extends Rocket {
 
     private static final int ROCKET_WEIGHT = 10_000;
     private static final int MAX_WEIGHT = 18_000;
+    private static final int ROCKET_COST = 100_000_000;
     private static final double TAKEOFF_RISK = 0.05;
     private static final double LANDING_RISK = 0.01;
+
 
     public U1() {
         super(MAX_WEIGHT, ROCKET_WEIGHT);
@@ -19,6 +21,8 @@ public class U1 extends Rocket {
     public boolean land() {
         return doRiskyThing(LANDING_RISK);
     }
+
+    public int getRocketCost() { return ROCKET_COST;}
 
 }
 
