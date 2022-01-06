@@ -8,7 +8,7 @@ public class U1 extends Rocket {
 
 
     public U1() {
-        super(MAX_WEIGHT, ROCKET_WEIGHT);
+        super(MAX_WEIGHT, ROCKET_WEIGHT, ROCKET_COST);
     }
 
 
@@ -22,7 +22,7 @@ public class U1 extends Rocket {
         return doRiskyThing(LANDING_RISK);
     }
 
-    public int getRocketCost() { return ROCKET_COST;}
+
 
 }
 

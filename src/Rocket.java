@@ -1,14 +1,12 @@
 public abstract class Rocket implements SpaceShip{
 
-    protected final int maxWeight;
-    protected final int rocketWeight;
-    protected final int cargoLimit;
-    protected int cargoCarried;
+    private final int cargoLimit;
+    private final int rocketCost;
+    private int cargoCarried;
 
-    protected Rocket(int maxWeight, int rocketWeight) {
-        this.maxWeight = maxWeight;
-        this.rocketWeight = rocketWeight;
+    protected Rocket(int maxWeight, int rocketWeight, int rocketCost) {
         this.cargoLimit = maxWeight - rocketWeight;
+        this.rocketCost = rocketCost;
         cargoCarried = 0;
     }
 
@@ -26,6 +24,7 @@ public abstract class Rocket implements SpaceShip{
     public boolean canCarry(Item item) { // Checks if an item can be loaded into the rocket.
         return cargoCarried + item.getWeight() <= cargoLimit;
     }
+    public int getRocketCost() { return rocketCost;}
 
     @Override
     public void carry(Item item) { // Updates the rocket's payload.

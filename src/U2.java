@@ -7,7 +7,7 @@ public class U2 extends Rocket{
     private static final double LANDING_RISK = 0.08;
 
     public U2() {
-        super(MAX_WEIGHT, ROCKET_WEIGHT);
+        super(MAX_WEIGHT, ROCKET_WEIGHT, ROCKET_COST);
     }
 
     @Override
@@ -20,7 +20,7 @@ public class U2 extends Rocket{
         return doRiskyThing(LANDING_RISK);
     }
 
-    public int getRocketCost() { return ROCKET_COST;}
+
 
 }
 
