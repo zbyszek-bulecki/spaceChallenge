@@ -22,8 +22,6 @@ public class U1 extends Rocket {
         return doRiskyThing(LANDING_RISK);
     }
 
-
-
 }
 
 

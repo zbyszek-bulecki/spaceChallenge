@@ -59,12 +59,18 @@ public class Simulation {
     }
 
 
-    public int runSimulation(ArrayList<Rocket> rocketList) {                    // This method launches the rockets and tracks cost of the programme for each rocket type.
+    public int runSimulation(ArrayList<? extends Rocket> rocketList) {                    // This method launches the rockets and tracks cost of the programme for each rocket type.
 
-      
+        int moneySpent = 0;
 
+        for (Rocket rocket : rocketList) {
+            do {
+               moneySpent += rocket.getRocketCost();
+           } while (!(rocket.launch() && rocket.land()));
 
-            }
+        }
+        return moneySpent;
+    }
 
 
 
